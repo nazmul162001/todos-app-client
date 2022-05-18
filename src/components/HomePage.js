@@ -1,10 +1,14 @@
 import React from 'react';
+import DisplayTodos from './DisplayTodos';
+import { BsListTask } from 'react-icons/bs';
 
 const HomePage = () => {
   return (
-    <div className="w-full h-screen flex justify-center pt-5 px-14 md:px-0">
-      <div className="todos-app w-full md:w-2/4 lg:w-1/4">
-        <h1 className="todo-title text-center text-3xl font-bold text-gray-500 pb-3">Add Your Daily Task</h1>
+    <div className="todos-app w-full h-screen flex justify-center pt-5 px-14 md:px-0">
+      <div className="w-full md:w-1/2 lg:w-1/2">
+        <h1 className="todo-title text-center text-3xl font-bold text-gray-500 pb-3">
+          Add Your Daily Task
+        </h1>
         <form>
           <input
             type="text"
@@ -17,9 +21,13 @@ const HomePage = () => {
             placeholder="Task Description"
           ></textarea>
           <div className="task-submit-btn w-full">
-            <input className='btn btn-primary w-full' type="submit" value="Add Task" />
+            <button className="btn btn-primary w-full  text-base">
+              <input className='cursor-pointer' type="submit" value="Add Task " />
+              <BsListTask className="text-xl" />
+            </button>
           </div>
         </form>
+        <DisplayTodos />
       </div>
     </div>
   );
