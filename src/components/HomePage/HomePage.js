@@ -1,13 +1,23 @@
 import React from 'react';
 import DisplayTodos from '../DisplayTodos/DisplayTodos';
 import { BsListTask } from 'react-icons/bs';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
-  const handleAddTodos = e => {
+
+  const handleAddTodos = async e => {
     e.preventDefault();
     const todoTask = e.target.todoTask.value;
     const todoDescription = e.target.todoDescription.value;
     console.log(todoTask, todoDescription);
+
+    await axios.post('http://localhost:5000/api/user', {
+      todoTask,
+      todoDescription,
+    });
+    toast.success('Added Your Todo Task')
+    e.target.reset();
   }
   
   return (

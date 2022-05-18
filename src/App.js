@@ -4,7 +4,6 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import LoginAlert from './components/LoginAlert/LoginAlert';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import Navbar from './components/Navbar/Navbar';
 
