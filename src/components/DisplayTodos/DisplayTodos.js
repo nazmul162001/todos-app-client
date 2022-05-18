@@ -1,36 +1,60 @@
-import React from 'react';
-import { GiCheckMark } from 'react-icons/gi';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import swal from 'sweetalert';
+import SingleTodos from '../SingleTodos/SingleTodos';
 
 const DisplayTodos = () => {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/user')
+      .then((res) => setTodos(res.data));
+  }, [todos]);
+  
+
+  const handeDelete = async (id)=>{
+     
+    swal({
+      title: "Are you sure?",
+      text: "You want to delete this todos?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then( async(willDelete)  => {
+      if (willDelete) {
+        swal("Successfully deleted your todos", {
+          icon: "success",
+        });
+        await axios.delete(`http://localhost:5000/api/user/${id}`)
+      } else {
+        // swal("Your imaginary file is safe!");
+      }
+    });
+  }
+  
+  
+  
   return (
     <div className="display-todos">
       <div class="overflow-x-auto">
         <table class="table w-full">
           {/* <!-- head --> */}
           <thead>
-            <tr>
+            <tr className='flex justify-between px-5'>
               <th>Task</th>
-              <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {/* <!-- row 1 --> */}
-            <tr className='border-2'>
-              <td className='py-4 px-1'>Todo Task</td>
-              <td className='py-4 px-1'>This is my todos description.</td>
-              <div className="todos-action flex justify-center items-center">
-                <td className='py-4 px-1'>
-                  <button class="btn btn-xs btn-success text-sm">Complete <GiCheckMark className='ml-2 text-xl' /> </button>
-                </td>
-                <td className='py-4 px-1'>
-                  <button class="btn btn-xs btn-error  text-sm">Delete <RiDeleteBin6Line className='ml-2 text-xl' /> </button>
-                </td>
-              </div>
-            </tr>
-          </tbody>
         </table>
+          {
+            todos.map(todo => <SingleTodos 
+              key={todo._id}
+              todo={todo}
+              handeDelete={handeDelete}
+            />)
+          }
       </div>
     </div>
   );
