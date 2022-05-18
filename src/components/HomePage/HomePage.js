@@ -1,23 +1,32 @@
 import React from 'react';
-import DisplayTodos from './DisplayTodos';
+import DisplayTodos from '../DisplayTodos/DisplayTodos';
 import { BsListTask } from 'react-icons/bs';
 
 const HomePage = () => {
+  const handleAddTodos = e => {
+    e.preventDefault();
+    const todoTask = e.target.todoTask.value;
+    const todoDescription = e.target.todoDescription.value;
+    console.log(todoTask, todoDescription);
+  }
+  
   return (
     <div className="todos-app w-full h-screen flex justify-center pt-5 px-14 md:px-0">
-      <div className="w-full md:w-1/2 lg:w-1/2">
+      <div className="w-full md:w-2/3 lg:w-2/3">
         <h1 className="todo-title text-center text-3xl font-bold text-gray-500 pb-3">
           Add Your Daily Task
         </h1>
-        <form>
+        <form onSubmit={handleAddTodos}>
           <input
             type="text"
+            name='todoTask'
             placeholder="Task Name"
             class="input input-bordered input-success w-full mb-3"
           />
           <br />
           <textarea
             class="textarea textarea-success w-full"
+            name='todoDescription'
             placeholder="Task Description"
           ></textarea>
           <div className="task-submit-btn w-full">
