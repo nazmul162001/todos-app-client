@@ -8,97 +8,91 @@ const Register = () => {
   const [err, setErr] = useState('');
   const navigate = useNavigate();
 
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);
-  
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   let errorMessage;
-  if(error){
-    errorMessage = <p className='italic text-red-600'> {error.message} </p>
+  if (error) {
+    errorMessage = <p className="italic text-red-600"> {error.message} </p>;
   }
 
-  if(user){
-    navigate('/')
+  if (user) {
+    navigate('/');
   }
 
-  if(loading){
-    return <Spinner />
+  if (loading) {
+    return <Spinner />;
   }
-  
 
-  const handleRegister = e => {
+  const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    // check password match 
-    if(password !== confirmPassword) {
-      setErr('Password do not match')
+    // check password match
+    if (password !== confirmPassword) {
+      setErr('Password do not match');
       return;
     }
     createUserWithEmailAndPassword(email, password);
-    setErr('')
-  }
-  
+    setErr('');
+  };
 
   return (
-    <div class="hero min-h-screen bg-base-200">
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-        <form onSubmit={handleRegister} class="card-body">
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Email</span>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <form onSubmit={handleRegister} className="card-body">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
             </label>
             <input
               type="text"
-              name='email'
+              name="email"
               placeholder="email"
               required
-              class="input input-bordered"
+              className="input input-bordered"
             />
           </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Password</span>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
             </label>
             <input
               type="password"
-              name='password'
+              name="password"
               placeholder="password"
               required
-              class="input input-bordered"
+              className="input input-bordered"
             />
           </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text">Confirm Password</span>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Confirm Password</span>
             </label>
             <input
               type="password"
-              name='confirmPassword'
+              name="confirmPassword"
               required
               placeholder="confirm password"
-              class="input input-bordered"
+              className="input input-bordered"
             />
           </div>
           {errorMessage}
-          <p className='text-red-600 italic'>{err}</p>
+          <p className="text-red-600 italic">{err}</p>
           <p className="">
             Already a Member?{' '}
             <Link to="/login">
               <strong className="italic">Login</strong>
             </Link>{' '}
           </p>
-          <div class="form-control mt-6">
-            <button class="btn btn-primary">
+          <div className="form-control mt-6">
+            <button className="btn btn-primary">
               <input type="submit" value="Register Account" />
             </button>
           </div>
-          <div class="divider">OR</div>
-          <button class="btn btn-secondary btn-outline">
+          <div className="divider">OR</div>
+          <button className="btn btn-secondary btn-outline">
             Login With Google
           </button>
         </form>

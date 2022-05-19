@@ -21,7 +21,7 @@ const Navbar = () => {
           icon: 'success',
         });
         signOut(auth);
-        navigate('/login')
+        navigate('/login');
       } else {
         // swal("Your imaginary file is safe!");
       }
@@ -29,12 +29,12 @@ const Navbar = () => {
   };
 
   return (
-    <div class="navbar bg-base-100">
-      <div class="flex-1">
-        <a class="btn btn-ghost normal-case text-xl">My Todos</a>
+    <div className="navbar bg-base-100">
+      <div className="flex-1">
+        <a className="btn btn-ghost normal-case text-xl">My Todos</a>
       </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal p-0">
+      <div className="flex-none">
+        <ul className="menu menu-horizontal p-0">
           <li>
             <Link to="/">Add Todos</Link>
           </li>
