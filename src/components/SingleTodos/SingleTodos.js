@@ -27,6 +27,8 @@ const SingleTodos = ({ todo, handeDelete }) => {
         });
   };
 
+  // main part
+  
   return (
     <div>
       <table class="table w-full my-2">
